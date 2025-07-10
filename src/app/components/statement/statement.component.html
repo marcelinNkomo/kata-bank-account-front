@@ -1,0 +1,20 @@
+<h2>Relevé de compte</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Montant </th>
+            <th scope="col">Solde</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (tx of transactions; track tx.id) {
+        <tr>
+            <td>{{ tx.date }}</td>
+            <td>{{ tx.amount }}</td>
+            <td>{{ tx.balance }}</td>
+        </tr>
+        }
+    </tbody>
+</table>
