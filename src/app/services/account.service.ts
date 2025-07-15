@@ -1,6 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Account } from "../models/account";
+import { CreatedAccountInfos } from "../models/createdAccountInfos";
+import { NewClientInfos } from "../models/newClientInfos";
+import { Statement } from "../models/statement";
 import { Transaction } from "../models/transaction";
 
 
@@ -8,17 +12,36 @@ import { Transaction } from "../models/transaction";
 export class AccountService {
   private baseUrl = 'http://localhost:8080/account';
 
-  constructor(private http: HttpClient) {}
+  transactionIds!: CreatedAccountInfos // permet de partager les informations dans différentes pages
 
-  deposit(amount: number): Observable<Transaction> {
-    return this.http.post<Transaction>(`${this.baseUrl}/deposit?amount=${amount}`, {});
+  constructor(private http: HttpClient) { }
+
+  // methode qui appelle le endpoint de creation du compte
+  createAccount(clientInfos: NewClientInfos): Observable<CreatedAccountInfos> {
+    return this.http.post<CreatedAccountInfos>(`${this.baseUrl}`, clientInfos)
   }
 
-  withdraw(amount: number): Observable<Transaction> {
-    return this.http.post<Transaction>(`${this.baseUrl}/withdraw?amount=${amount}`, {});
+  // methode qui appelle le endpoint de la transaction Dépôt
+  deposit(transaction: Transaction): Observable<Statement> {
+    return this.http.post<Statement>(`${this.baseUrl}/deposit`, transaction)
   }
 
-  getStatement(): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(`${this.baseUrl}/statement`);
+  // methode qui appelle le endpoint de la transaction Retrait
+  withdraw(transaction: Transaction): Observable<Statement> {
+    return this.http.post<Statement>(`${this.baseUrl}/withdraw`, transaction)
+  }
+
+  // methode qui appelle le endpoint qui permet d'afficher les informations du compte
+  getStatement(accountId: string): Observable<Account> {
+    return this.http.get<Account>(`${this.baseUrl}/statement/${accountId}`)
+  }
+
+  // getter et setter
+  storeTransanctionIds(transactionIds: CreatedAccountInfos) {
+    this.transactionIds = transactionIds
+  }
+
+  getTransanctionIds() {
+    return this.transactionIds
   }
 }

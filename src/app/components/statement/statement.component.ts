@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { AccountService } from "../../services/account.service";
+import { Account } from "../../models/account";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-statement',
@@ -9,11 +11,21 @@ import { AccountService } from "../../services/account.service";
     styleUrl: 'statement.component.scss'
 })
 export class StatementComponent implements OnInit {
-    transactions: any[] = [];
-    constructor(private service: AccountService) { }
+    accountId!: string
+    account!: Account;
+
+    constructor(private service: AccountService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.service.getStatement().subscribe(data => this.transactions = data);
+        this.accountId = this.route.snapshot.params['accountId']
+        this.service.getStatement(this.accountId).subscribe(data => this.account = data)
+    }
+
+    /**
+     * methode qui permet d'imprimer son relevé de compte
+     */
+    print() {
+        window.print()
     }
 
 }

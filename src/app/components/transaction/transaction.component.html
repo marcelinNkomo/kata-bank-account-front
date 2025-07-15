@@ -1,0 +1,49 @@
+<div class="container mt-4">
+
+    <!-- Bandeau de message -->
+    <!-- Bande d'alerte -->
+    <div class="alert" *ngIf="message" [ngClass]="{' alert-success': success, 'alert-danger': !success}">
+        {{ message }}
+    </div>
+
+    <!-- Formulaire de transaction -->
+    <form class="card p-4">
+        <div class="form-group mb-3">
+            <label for="accountId">Numéro de compte</label>
+            <input type="text" class="form-control" [(ngModel)]="accountId" name="accountId" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="clientId">Identifiant du client</label>
+            <input type="text" class="form-control" [(ngModel)]="clientId" name="clientId" required>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="amount">Montant</label>
+            <input type="number" class="form-control" [(ngModel)]="amount" name="amount" required>
+        </div>
+
+        <!-- Boutons de dépôt et retrait -->
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-success" (click)="performDeposit()">Dépôt</button>
+            <button type="button" class="btn btn-danger" (click)="performWithdrawal()">Retrait</button>
+        </div>
+    </form>
+
+    <!-- Informations de réponse -->
+    <div *ngIf="responseData" class="card">
+        <div class="card-header">Informations de la transaction</div>
+        <div class="card-body">
+            <p><strong>Date :</strong> {{ responseData.date | date: 'MMM d, y' }}</p>
+            <p><strong>Montant :</strong> {{ responseData.amount }} €</p>
+            <p><strong>Solde :</strong> {{ responseData.balance }} €</p>
+        </div>
+    </div>
+
+    <div class="mt-4 text-end">
+        <button class="btn btn-outline-dark" (click)="goToStatement()">
+             ➡️ Relevé de compte
+        </button>
+    </div>
+
+</div>

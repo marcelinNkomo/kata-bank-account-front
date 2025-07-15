@@ -1,9 +1,11 @@
 
+/**
+ * Classe qui contient les informations nécessaires pour réaliser une transaction
+ */
 export class Transaction {
     constructor(
-        public id: string,
-        public date: Date,
-        public amount: number,
-        public balance: number
-    ){}
+        public accountId: string,
+        public clientId: string,
+        public amount: number
+    ) { }
 }

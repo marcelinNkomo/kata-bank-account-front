@@ -1,20 +1,50 @@
-<h2>Relevé de compte</h2>
+<div class="container mt-4">
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Montant </th>
-            <th scope="col">Solde</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (tx of transactions; track tx.id) {
-        <tr>
-            <td>{{ tx.date }}</td>
-            <td>{{ tx.amount }}</td>
-            <td>{{ tx.balance }}</td>
-        </tr>
-        }
-    </tbody>
-</table>
+  <!-- Informations client -->
+  <div class="card mb-4">
+    <div class="card-header bg-info text-white">
+      👤 Informations du client
+    </div>
+    <div class="card-body">
+      <p><strong>Identifiant :</strong> {{ account.client.id }}</p>
+      <p><strong>Nom :</strong> {{ account.client.lastName }}</p>
+      <p><strong>Prénom :</strong> {{ account.client.firstName }}</p>
+      <p><strong>Date d'inscription :</strong> {{ account.client.date | date: 'mediumDate' }}</p>
+      <p><strong>Solde actuel :</strong> {{ account.balance }} €</p>
+    </div>
+  </div>
+
+  <!-- Relevé des opérations -->
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      📄 Relevé de compte
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-striped mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>Date</th>
+            <th>Montant (€)</th>
+            <th>Solde après opération (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of account.statements">
+            <td>{{ s.date | date: 'short' }}</td>
+            <td [ngClass]="{ 'text-success': s.amount > 0, 'text-danger': s.amount < 0 }">
+              {{ s.amount }}
+            </td>
+            <td>{{ s.balance }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mt-4 text-end">
+        <button class="btn btn-outline-dark" (click)="print()">
+            🖨️ imprimer 
+        </button>
+    </div>
+
+</div>

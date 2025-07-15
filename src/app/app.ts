@@ -1,15 +1,10 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { DepositComponent } from './components/deposit/deposit.component';
-import { StatementComponent } from './components/statement/statement.component';
-import { WithdrawComponent } from './components/withdraw/withdraw.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   imports: [
-    DepositComponent,
-    WithdrawComponent,
-    StatementComponent
+    RouterOutlet
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
