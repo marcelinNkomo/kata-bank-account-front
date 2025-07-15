@@ -1,14 +1,46 @@
-# BankAccountUi
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
+# Kata Bank Account Front
 
-## Pré requis
+Cette application Angular permet de gérer des comptes bancaires. Elle propose la création de comptes, la gestion des transactions et l'affichage des relevés bancaires.
 
- Démarrer au préalable le back-end disponible depuis le repo : [https://github.com/marcelinNkomo/kata-bank-account.git](https://github.com/marcelinNkomo/kata-bank-account.git)
+## Installation
 
-## Lancement de l'application
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/mnkomo/kata-bank-account-front.git
+   cd kata-bank-account-front
+   ```
+2. Installez les dépendances :
+   ```bash
+   npm install
+   ```
 
- - se positionner dans le répertoire source de l'application
- - exécuter la commande : `ng serve`
+## Lancement du projet
 
-Une fois le serveur démarer, vous pourrez accéder à l'application via l'URL :  [http://localhost:4200/](http://localhost:4200/)
+
+### pré requis
+   rassurer vous d'avoir au préalable lancer l'api (backend), disponible duis le repository : [https://github.com/mnkomo/kata-bank-account.git](https://github.com/mnkomo/kata-bank-account.git)
+
+Pour démarrer l'application en mode développement :
+```bash
+npm start
+```
+L'application sera accessible sur [http://localhost:4200](http://localhost:4200).
+
+## Modèles
+
+- **Client** : Représente un client de la banque (`src/app/models/client.ts`)
+- **Account** : Représente un compte bancaire (`src/app/models/account.ts`)
+- **Statement** : Représente un relevé de compte (`src/app/models/statement.ts`)
+- **Transaction** : Représente une opération bancaire (`src/app/models/transaction.ts`)
+
+## Composants
+
+- **Création de compte** : Permet de créer un nouveau compte (`src/app/components/account/`)
+- **Transaction** : Permet d'effectuer des opérations sur un compte (`src/app/components/transaction/`)
+- **Relevé** : Affiche l'historique des opérations (`src/app/components/statement/`)
+
+## Services
+
+- **AccountService** : Gère la logique métier liée aux comptes (`src/app/services/account.service.ts`)
+- **TransactionService** : Gère les transactions (à créer si non présent)
