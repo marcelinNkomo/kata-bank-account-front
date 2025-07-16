@@ -5,8 +5,8 @@
 export class Client {
     constructor(
         public id: string,
-        public lastName: string,
-        public firstName: string,
+        public lastname: string,
+        public firstname: string,
         public date: Date,
     ) { }
 }

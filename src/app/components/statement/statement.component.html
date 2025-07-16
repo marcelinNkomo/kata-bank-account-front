@@ -7,8 +7,8 @@
     </div>
     <div class="card-body">
       <p><strong>Identifiant :</strong> {{ account.client.id }}</p>
-      <p><strong>Nom :</strong> {{ account.client.lastName }}</p>
-      <p><strong>Prénom :</strong> {{ account.client.firstName }}</p>
+      <p><strong>Nom :</strong> {{ account.client.lastname }}</p>
+      <p><strong>Prénom :</strong> {{ account.client.firstname }}</p>
       <p><strong>Date d'inscription :</strong> {{ account.client.date | date: 'mediumDate' }}</p>
       <p><strong>Solde actuel :</strong> {{ account.balance }} €</p>
     </div>
